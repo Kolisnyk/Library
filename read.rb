@@ -50,75 +50,75 @@
   password = STDIN.gets.chomp
 
       if authorized_name != name or authorization_password != password
-        puts "You are not authorized: you can just read Common library. Here it is."
+                                                        puts "You are not authorized: you can just read Common library. Here it is."
 
 
-          result = Book.find(options[:limit], options[:genre], options[:id])
+                                                          result = Book.find(options[:limit], options[:genre], options[:id])
 
-          if result.is_a? Book
-            puts "Book #{result.class.name}, id = #{options[:id]}"
+                                                          if result.is_a? Book
+                                                            puts "Book #{result.class.name}, id = #{options[:id]}"
 
-            result.to_strings.each do |line|
-              puts line
-            end
-          else
-            puts "Books in the library:"
-          print "| id\t| Genre\t\t| Title \t| Author \t| Cover \t| Content \t | Added to library \t "
+                                                            result.to_strings.each do |line|
+                                                              puts line
+                                                            end
+                                                          else
+                                                            puts "Books in the library:"
+                                                          print "| id\t| Genre\t\t| Title \t| Author \t| Cover \t| Content \t | Added to library \t "
 
-          result.each do |row|
-            puts
+                                                          result.each do |row|
+                                                            puts
 
-            row.each do |element|
-              print "| #{element.to_s.delete("\\n\\r")[0..15]}\t"
-            end
-          end
-      end
+                                                            row.each do |element|
+                                                              print "| #{element.to_s.delete("\\n\\r")[0..15]}\t"
+                                                            end
+                                                          end
+                                                      end
       else
-        puts "would you like to see Common library or Draft library? Answer is common/draft."
-        answer = STDIN.gets.chomp
-        if answer != "common"
-            result = Draftbook.find(options[:limit], options[:genre], options[:id])
+              puts "would you like to see Common library or Draft library? Answer is common/draft."
+              answer = STDIN.gets.chomp
+              if answer != "common"
+                  result = Draftbook.find(options[:limit], options[:genre], options[:id])
 
-            if result.is_a? Draftbook
-              puts "Book #{result.class.name}, id = #{options[:id]}"
+                  if result.is_a? Draftbook
+                    puts "Book #{result.class.name}, id = #{options[:id]}"
 
-              result.to_strings.each do |line|
-                puts line
-              end
-            else
-              puts "Books in the library:"
-              print "| id\t| Genre\t\t| Title \t| Author \t| Cover \t| Content \t | Added to library \t "
-
-              result.each do |row|
-                puts
-
-                    row.each do |element|
-                      print "| #{element.to_s.delete("\\n\\r")[0..15]}\t"
+                    result.to_strings.each do |line|
+                      puts line
                     end
-                 end
-            end
-        else
-                result = Book.find(options[:limit], options[:genre], options[:id])
+                  else
+                    puts "Books in the library:"
+                    print "| id\t| Genre\t\t| Title \t| Author \t| Cover \t| Content \t | Added to library \t "
 
-                if result.is_a? Book
-                  puts "Book #{result.class.name}, id = #{options[:id]}"
+                    result.each do |row|
+                      puts
 
-                  result.to_strings.each do |line|
-                    puts line
+                          row.each do |element|
+                            print "| #{element.to_s.delete("\\n\\r")[0..15]}\t"
+                          end
+                       end
                   end
-                else
-                  puts "Books in the library:"
-                  print "| id\t| Genre\t\t| Title \t| Author \t| Cover \t| Content \t | Added to library \t "
+              else
+                      result = Book.find(options[:limit], options[:genre], options[:id])
 
-                  result.each do |row|
-                    puts
+                      if result.is_a? Book
+                        puts "Book #{result.class.name}, id = #{options[:id]}"
 
-                      row.each do |element|
-                        print "| #{element.to_s.delete("\\n\\r")[0..15]}\t"
+                        result.to_strings.each do |line|
+                          puts line
+                        end
+                      else
+                        puts "Books in the library:"
+                        print "| id\t| Genre\t\t| Title \t| Author \t| Cover \t| Content \t | Added to library \t "
+
+                        result.each do |row|
+                          puts
+
+                            row.each do |element|
+                              print "| #{element.to_s.delete("\\n\\r")[0..15]}\t"
+                            end
+                        end
                       end
-                  end
-                end
-        end
+              end
       end
 
 
